@@ -22,15 +22,18 @@ public class BlogService {
     public Article save(AddArticleRequest request) {
         return blogRepository.save(request.toEntity());
     }
+
     //블로그 글 목록 조회 메서드
     public List<Article> findAll() {
         return blogRepository.findAll();
     }
+
     //블로그 글 조회 메서드
     public Article findById(long id) {
         return blogRepository.findById(id)
                 .orElseThrow(()->new IllegalArgumentException("not found: " + id));
     }
+
     //블로그 글 삭제 메서드
     public void delete(long id) {
         blogRepository.deleteById(id);
