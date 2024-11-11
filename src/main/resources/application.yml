@@ -16,4 +16,7 @@ spring:
     console:
       enabled: true
 
+jwt:
+  issuer: ajufresh@gmail.com
+  secret_key: study-springboot
   #properties와 yml 의 차이는 : 과 =
