@@ -7,7 +7,6 @@ import io.jsonwebtoken.SignatureAlgorithm;
 import java.time.Duration;
 import java.util.Collections;
 import java.util.Date;
-import java.util.HashSet;
 import java.util.Set;
 import lombok.RequiredArgsConstructor;
 import me.yuseonu.springbootdeveloper.domain.User;
@@ -36,7 +35,7 @@ public class TokenProvider {
                 // 내용 iss : ajufresh@gmail.com(properties 파일에서 설정한 값)
                 .setIssuer(jwtProperties.getIssuer())
                 .setIssuedAt(now)       // 내용 iat : 현재 시간
-                .setExpiration(expiry) // 내용 exp : expiry 멤버 변숫값
+                    .setExpiration(expiry) // 내용 exp : expiry 멤버 변숫값
                 .setSubject(user.getEmail()) // 내용 sub : 유저의 이메일
                 .claim("id", user.getId()) //클레임 id: 유저 ID
                 // 서명 : 비밀값과 함께 해시값을 HS256 방식으로 암호화
@@ -45,7 +44,7 @@ public class TokenProvider {
     }
 
     // JWT 토큰 유효성 검증 메서드
-    public boolean validateToken(String token) {
+    public boolean validToken(String token) {
         try {
             Jwts.parser()
                     .setSigningKey(jwtProperties.getSecretKey()) // 비밀값으로 복호화
